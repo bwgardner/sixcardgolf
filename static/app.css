@@ -1,0 +1,155 @@
+body { font-family: system-ui, -apple-system, sans-serif; margin: 20px; }
+.row { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
+.hand { border: 1px solid #ddd; border-radius: 10px; padding: 12px; min-width: 240px; }
+.active { border-color: #333; box-shadow: 0 0 0 2px #333 inset; }
+.name { font-weight: 700; margin-bottom: 6px; }
+
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+
+.card {
+  border: 1px solid #ccc; border-radius: 10px; padding: 10px;
+  text-align: center; cursor: pointer; user-select: none;
+  background: #fafafa;
+}
+.card:hover { background: #f0f0f0; }
+
+/* Cards inside player hands */
+.card .cardImg {
+  width: 70px;        /* adjust to taste */
+  height: auto;
+  border-radius: 6px;
+}
+
+/* NEW: inactive hands appear disabled and unclickable */
+.inactive-hand .card { opacity: 0.6; cursor: not-allowed; }
+.inactive-hand .card:hover { background: #fafafa; }
+
+.status { margin-top: 14px; padding-top: 12px; border-top: 1px solid #eee; }
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+.buttons { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+button { padding: 8px 10px; border-radius: 8px; border: 1px solid #ccc; background: white; cursor: pointer; }
+button:hover { background: #f6f6f6; }
+
+.log { margin-top: 12px; padding: 12px; border: 1px solid #eee; border-radius: 10px; background: #fcfcfc; }
+
+/* Piles + drawn card */
+.tableau { display: flex; gap: 18px; align-items: flex-start; flex-wrap: wrap; margin-top: 10px; }
+
+.pile {
+  width: 150px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background: #fff;
+  padding: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+.pile:hover { background: #f7f7f7; }
+.pileTitle { font-weight: 700; margin-bottom: 6px; }
+.pileSub { font-size: 12px; color: #555; }
+
+/* Make the pile face a positioning context */
+.pileFace {
+  position: relative;
+  margin-top: 10px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+}
+
+/* Ensure the top card sits above the stack */
+.pileImg {
+  width: 80px;
+  height: auto;
+  border-radius: 6px;
+  position: relative;
+  z-index: 3;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+}
+
+/* Two “shadow cards” behind the top card */
+.pileFace::before,
+.pileFace::after {
+  content: "";
+  position: absolute;
+  width: 80px;
+  height: 112px;            /* roughly matches your card aspect */
+  border-radius: 6px;
+  background: #e9e9e9;      /* subtle card stock */
+  border: 1px solid #d2d2d2;
+  z-index: 1;
+}
+
+.pileFace::before { transform: translate(6px, 6px); }
+.pileFace::after  { transform: translate(12px, 12px); opacity: 0.9; }
+
+#discardPile .pileFace::before { transform: translate(7px, 5px) rotate(-1deg); }
+#discardPile .pileFace::after  { transform: translate(13px, 11px) rotate(1deg); }
+
+.drawn {
+  width: 260px;
+  border: 2px solid #333;
+  border-radius: 14px;
+  padding: 14px;
+  background: #fff;
+  cursor: pointer;
+  user-select: none;
+}
+.drawn:hover { background: #f7f7f7; }
+.drawnTitle { font-weight: 800; margin-bottom: 8px; }
+.drawnCard {
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  background: #fcfcfc;
+}
+.drawnShort { font-size: 30px; font-weight: 900; margin-bottom: 8px; }
+.drawnLong { font-size: 14px; color: #333; }
+
+.drawnImg {
+  width: 140px;   /* adjust to taste */
+  height: auto;
+}
+
+.drawnBox {
+  min-width: 240px;
+  padding: 16px;
+  border-radius: 14px;
+  border: 2px solid #bbb;
+  background: #f4f4f4;
+}
+
+.drawnTitle {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.drawnContent {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#drawnArea .drawnImg {
+  height: 190px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.drawnPlaceholder {
+  font-size: 28px;
+  opacity: 0.4;
+}
+
+.hint { font-size: 12px; color: #555; margin-top: 8px; }
+
+.disabled {
+  opacity: 0.45;
+  cursor: not-allowed !important;
+}

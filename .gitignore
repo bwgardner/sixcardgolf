@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+.venv/
+
+# pytest
+.pytest_cache/
+
+# Playwright
+test-results/
+playwright-report/
+trace.zip
+
+# macOS
+.DS_Store
+
+# VSCode optional
+.vscode/
+
+# IPython Notebook
+.ipynb_checkpoints/

@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Six Card Golf</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+</head>
+<body>
+  <h2>Six Card Golf (Flask UI)</h2>
+
+  <div id="hands" class="row"></div>
+
+  <div class="status">
+    <div id="statusLine" class="mono"></div>
+
+    <div class="tableau">
+
+      <div id="deckPile" class="pile">
+        <div class="pileTitle">Deck</div>
+        <div id="deckCount" class="pileSub"></div>
+        <div class="pileFace">
+          <img id="deckImg" class="pileImg" alt="Deck">
+        </div>
+      </div>
+
+      <div id="discardPile" class="pile">
+        <div class="pileTitle">Discard</div>
+        <div class="pileSub mono" id="discardTop">(empty)</div>
+        <div class="pileFace">
+          <img id="discardImg" class="pileImg" alt="Discard">
+        </div>
+      </div>
+
+      <div id="drawnArea" class="drawn">
+        <div class="drawnTitle">Drawn Card</div>
+        <div class="drawnCard">
+          <img id="drawnImg" class="drawnImg" alt="Drawn card" />
+          <div id="drawnPlaceholder" class="drawnPlaceholder">(none)</div>
+        </div>
+        <div class="hint" id="drawnHint"></div>
+      </div>
+
+    </div>
+
+    <div class="buttons" id="controls"></div>
+    <div class="log" id="log"></div>
+  </div>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
